@@ -1,3 +1,4 @@
+// Implementing Stack with Golang generics
 package main
 
 import "fmt"
@@ -11,19 +12,36 @@ type Node[T Data] struct {
 	Value T
 }
 
-func (n *Node[T]) Push(head *Node[T], value T) *Node[T] {
-	temp := &Node[T]{
-		Next:  head,
+type Stack[T Data] struct {
+	Head *Node[T]
+}
+
+func (s *Stack[T]) Push(value T) {
+	s.Head = &Node[T]{
+		Next:  s.Head,
 		Value: value,
 	}
+}
 
-	return temp
+func (s *Stack[T]) Pop() *Node[T] {
+	if s.Head != nil {
+		temp := s.Head
+		s.Head = s.Head.Next
+
+		return temp
+	}
+
+	return nil
 }
 
 func main() {
-	var head *Node[int64]
-	head = head.Push(head, 12)
-	head = head.Push(head, 16)
+	s := Stack[int64]{}
 
-	fmt.Println(head.Value)
+	s.Push(12)
+	s.Push(129)
+	s.Push(160)
+
+	fmt.Println(s.Pop().Value)
+	fmt.Println(s.Pop().Value)
+	fmt.Println(s.Pop().Value)
 }
