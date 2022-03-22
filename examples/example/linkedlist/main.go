@@ -37,6 +37,31 @@ func (l *LinkedList[T]) Add(value T) {
 	}
 }
 
+func (l *LinkedList[T]) Remove(value T) {
+	temp := l.Head
+	prev := l.Head
+
+	for {
+		if temp == nil {
+			break
+		}
+
+		if temp.Value == value {
+			if prev == l.Head {
+				l.Head = temp.Next
+			}
+			
+			prev.Next = temp.Next
+			temp = nil
+
+			return
+		}
+
+		prev = temp
+		temp = temp.Next
+	}
+}
+
 func (l *LinkedList[T]) Iterate() {
 	temp := l.Head
 
