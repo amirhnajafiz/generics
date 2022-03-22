@@ -1,3 +1,6 @@
+// Implementing Linked List with Golang generics
+// author: Amirhnajafiz
+// year: 2022
 package main
 
 import "fmt"
@@ -15,6 +18,7 @@ type LinkedList[T Data] struct {
 	Head *Node[T]
 }
 
+// Add : add a value to list
 func (l *LinkedList[T]) Add(value T) {
 	temp := l.Head
 	node := &Node[T]{
@@ -37,6 +41,7 @@ func (l *LinkedList[T]) Add(value T) {
 	}
 }
 
+// Remove : remove a value from list
 func (l *LinkedList[T]) Remove(value T) {
 	temp := l.Head
 	prev := l.Head
@@ -62,6 +67,7 @@ func (l *LinkedList[T]) Remove(value T) {
 	}
 }
 
+// Iterate : iterate the list
 func (l *LinkedList[T]) Iterate() {
 	temp := l.Head
 
