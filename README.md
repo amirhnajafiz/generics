@@ -57,6 +57,32 @@ func SumNumbers[K comparable, V Number](m map[K]V) V {
 ```
 
 ### Getting started with fuzzing
+The unit test has limitations, namely that each input must be added to the test by the developer. One benefit of fuzzing is that it comes up with inputs for your code, and may identify edge cases that the test cases you came up with didn’t reach.
+
+Example:
+```go
+func FuzzReverse(f *testing.F) {
+    testcases := []string{"Hello, world", " ", "!12345"}
+    for _, tc := range testcases {
+        f.Add(tc)  // Use f.Add to provide a seed corpus
+    }
+    f.Fuzz(func(t *testing.T, orig string) {
+        rev := Reverse(orig)
+        doubleRev := Reverse(rev)
+        if orig != doubleRev {
+            t.Errorf("Before: %q, after: %q", orig, doubleRev)
+        }
+        if utf8.ValidString(orig) && !utf8.ValidString(rev) {
+            t.Errorf("Reverse produced invalid UTF-8 string %q", rev)
+        }
+    })
+}
+```
+
+When fuzzing, you can’t predict the expected output, since you don’t have control over the inputs.<br />
+Note the syntax differences between the unit test and the fuzz test:
+- The function begins with FuzzXxx instead of TestXxx, and takes \*testing.F instead of \*testing.T
+- Where you would expect to a see a t.Run execution, you instead see f.Fuzz which takes a fuzz target function whose parameters are \*testing.T and the types to be fuzzed. The inputs from your unit test are provided as seed corpus inputs using f.Add.
 
 ## Resources
 - [Beta installation of Go 1.18](https://go.dev/blog/go1.18beta2)
@@ -64,5 +90,6 @@ func SumNumbers[K comparable, V Number](m map[K]V) V {
 - [Tips for Go 1.18](https://tip.golang.org/doc/go1.18)
 
 ## Examples and Tutorials
-- [Go generics in go-playground](https://go.dev/doc/tutorial/generics)
+- [Go generics tutorial](https://go.dev/doc/tutorial/generics)
+- [Go fuzzings tutorial](https://go.dev/doc/tutorial/fuzz)
 - [Go examples for generics](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjagPy1is_2AhXP8rsIHUWABXQQFnoECAgQAQ&url=https%3A%2F%2Fbignerdranch.com%2Fblog%2Fexploring-go-v1-18s-generics%2F&usg=AOvVaw0p24Y94Q3VshO1kUaKY_p7)
