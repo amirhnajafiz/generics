@@ -77,13 +77,13 @@ func (l *LinkedList[T]) Iterate() {
 	}
 }
 
-// TODO: Remove function
-// TODO: Iterate function
 func main() {
 	l := LinkedList[int64]{}
 
 	l.Add(12)
 	l.Add(16)
+
+	l.Remove(12)
 
 	l.Iterate()
 }

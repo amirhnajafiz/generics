@@ -146,10 +146,38 @@ type Stack[T Data] struct {
 
 Now we can create our stack in any type we want:
 ```go
-    s := Stack[int64]{}
-	s.Push(12)
-	s.Push(129)
-	s.Push(160)
+s := Stack[int64]{}
+s.Push(12)
+s.Push(129)
+s.Push(160)
+temp := s.Pop()
+```
+
+### Linked List
+Same types, but different methods:
+```go
+type Data interface {
+	int64 | float64 | string
+}
+
+type Node[T Data] struct {
+	Next  *Node[T]
+	Value T
+}
+
+type LinkedList[T Data] struct {
+	Head *Node[T]
+}
+```
+
+Now we can build our linked list on any type:
+```go
+l := LinkedList[float64]{}
+l.Add(12.1)
+l.Add(22.45)
+l.Add(0.75)
+l.Iterate()
+l.Remove(12.1)
 ```
 
 ## Resources
