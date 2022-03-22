@@ -37,6 +37,21 @@ func (l *LinkedList[T]) Add(value T) {
 	}
 }
 
+func (l *LinkedList[T]) Iterate() {
+	temp := l.Head
+
+	for {
+		if temp == nil {
+			break
+		}
+
+		fmt.Print(temp.Value)
+		fmt.Print(" ")
+
+		temp = temp.Next
+	}
+}
+
 // TODO: Remove function
 // TODO: Iterate function
 func main() {
@@ -44,4 +59,6 @@ func main() {
 
 	l.Add(12)
 	l.Add(16)
+
+	l.Iterate()
 }
