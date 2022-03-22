@@ -124,6 +124,34 @@ The go command has a couple of subcommands for working with workspaces in additi
 ### 20% Performance Improvements
 Apple M1, ARM64, and PowerPC64 users rejoice! Go 1.18 includes CPU performance improvements of up to 20% due to the expansion of Go 1.17’s register ABI calling convention to these architectures. Just to underscore how big this release is, a 20% performance improvement is the fourth most important headline!
 
+## Examples
+In this section I implemented some data structures with Golang generics.
+
+### Stack
+Defining the data types:
+```go
+type Data interface {
+	int64 | float64 | string
+}
+
+type Node[T Data] struct {
+	Next  *Node[T]
+	Value T
+}
+
+type Stack[T Data] struct {
+	Head *Node[T]
+}
+```
+
+Now we can create our stack in any type we want:
+```go
+    s := Stack[int64]{}
+	s.Push(12)
+	s.Push(129)
+	s.Push(160)
+```
+
 ## Resources
 - [Beta installation of Go 1.18](https://go.dev/blog/go1.18beta2)
 - [Whats new in Go 1.18](https://go.dev/blog/go1.18)
