@@ -16,8 +16,8 @@ type LinkedList[T Data] struct {
 }
 
 func (l *LinkedList[T]) Add(value T) {
-	temp *Node[T] = l.Head
-	node *Node[T] = &Node{
+	temp := l.Head
+	node := &Node[T]{
 		Next: nil,
 		Value: value,
 	}
