@@ -1,5 +1,5 @@
-# NewGo
-<img src="./assets/logo.png" />
+# Go 1.18
+<img src="./assets/logo.avif" />
 
 New features of Golang 1.18 with tutorial and examples.
 In this repository I introduce new features of Golang version 1.18 with their examples and resources.
