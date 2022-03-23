@@ -1,13 +1,18 @@
+// Implementing Binary tree with Golang generics
+// author: Amirhnajafiz
+// year: 2022
 package main
 
 import (
 	"fmt"
 )
 
+// Type parameter
 type Data interface {
 	int | int32 | int64 | float64
 }
 
+// Each tree node
 type Node[T Data] struct {
 	Parent *Node[T]
 	Left   *Node[T]
@@ -15,10 +20,12 @@ type Node[T Data] struct {
 	key    T
 }
 
+// Tree
 type Tree[T Data] struct {
 	Root *Node[T]
 }
 
+// Insert : add a value to tree
 func (tree *Tree[T]) Insert(value T) {
 	newNode := &Node[T]{
 		Parent: nil,
@@ -51,6 +58,7 @@ func (tree *Tree[T]) Insert(value T) {
 	}
 }
 
+// Search : search for value in tree
 func (node *Node[T]) Search(key T) *Node[T] {
 	if node == nil {
 		fmt.Println("KEY DOES NOT EXIST !")
@@ -66,6 +74,7 @@ func (node *Node[T]) Search(key T) *Node[T] {
 	}
 }
 
+// GetMax : get maximum element in tree
 func (root *Node[T]) GetMax() *Node[T] {
 	tmp := root
 	for {
@@ -77,6 +86,7 @@ func (root *Node[T]) GetMax() *Node[T] {
 	}
 }
 
+// GetMin : get minimum element in tree
 func (root *Node[T]) GetMin() *Node[T] {
 	tmp := root
 	for {
@@ -88,6 +98,7 @@ func (root *Node[T]) GetMin() *Node[T] {
 	}
 }
 
+// GetPredecessor : get predecessor of a node
 func (node *Node[T]) GetPredecessor() *Node[T] {
 	if node.Left != nil {
 		return node.Left.GetMax()
@@ -105,6 +116,7 @@ func (node *Node[T]) GetPredecessor() *Node[T] {
 	}
 }
 
+// GetSuccessor : get successor of a node
 func (node *Node[T]) GetSuccessor() *Node[T] {
 	if node.Right != nil {
 		return node.Right.GetMin()
@@ -122,11 +134,13 @@ func (node *Node[T]) GetSuccessor() *Node[T] {
 	}
 }
 
-func (tree *Tree[T]) DeleteUseKey(key T) {
+// Delete : remove a node by value
+func (tree *Tree[T]) Delete(key T) {
 	node := tree.Root.Search(key)
 	node.DeleteNode()
 }
 
+// DeleteNode : remove the node from tree
 func (node *Node[T]) DeleteNode() bool {
 	if node == nil {
 		return false
@@ -166,6 +180,7 @@ func (node *Node[T]) DeleteNode() bool {
 	}
 }
 
+// IsLeaf : check if a nood is a leaf
 func (node *Node[T]) IsLeaf() bool {
 	if node.Right == nil && node.Left == nil {
 		return true
@@ -173,6 +188,7 @@ func (node *Node[T]) IsLeaf() bool {
 	return false
 }
 
+// IsRightChild : check if a nood is right child of its parent
 func (node *Node[T]) IsRightChild() bool {
 	if node.key > node.Parent.key {
 		return true
