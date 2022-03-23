@@ -65,6 +65,8 @@ func SumNumbers[K comparable, V Number](m map[K]V) V {
 }
 ```
 
+See the [source code](./examples/generics/) of the example.
+
 ### Getting started with fuzzing
 The unit test has limitations, namely that each input must be added to the test by the developer. One benefit of fuzzing is that it comes up with inputs for your code, and may identify edge cases that the test cases you came up with didn’t reach.
 
@@ -92,6 +94,8 @@ When fuzzing, you can’t predict the expected output, since you don’t have co
 Note the syntax differences between the unit test and the fuzz test:
 - The function begins with FuzzXxx instead of TestXxx, and takes \*testing.F instead of \*testing.T
 - Where you would expect to a see a t.Run execution, you instead see f.Fuzz which takes a fuzz target function whose parameters are \*testing.T and the types to be fuzzed. The inputs from your unit test are provided as seed corpus inputs using f.Add.
+
+See the [source code](./examples/fuzzing/) of the example.
 
 ### Getting started with multi-module workspaces
 A workspace is a collection of modules on disk that are used as the root modules when running minimal version selection (MVS).
@@ -153,6 +157,8 @@ s.Push(160)
 temp := s.Pop()
 ```
 
+See the [source code](./examples/example/stack/) of the example.
+
 ### Linked List
 Same types, but different methods:
 ```go
@@ -179,6 +185,8 @@ l.Add(0.75)
 l.Iterate()
 l.Remove(12.1)
 ```
+
+See the [source code](./examples/example/linked-list/) of the example.
 
 ### Binary Tree
 Type parameter and data structs:
@@ -207,6 +215,8 @@ tree.Insert(25)
 tree.Insert(24)
 tree.Delete(20)
 ```
+
+See the [source code](./examples/example/binary-tree/) of the example.
 
 ## Resources
 - [Beta installation of Go 1.18](https://go.dev/blog/go1.18beta2)
