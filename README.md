@@ -5,17 +5,17 @@ New features of Golang 1.18 with tutorial and examples.
 In this repository I introduce new features of Golang version 1.18 with their examples and resources.
 
 ## Contents
-- Introduction
-    - Generics
-    - Fuzzing
-    - Workspace
-    - Performance Improvements
+- [Introduction](#introduction)
+    - [Generics](#getting-started-with-generics)
+    - [Fuzzing](#getting-started-with-fuzzing)
+    - [Workspace](#getting-started-with-multi-module-workspaces)
+    - [Performance Improvements](#20-performance-improvements)
 - Examples
-    - Implement **Stack** with Generics
-    - Implement **Linkedlist** with Generics
-    - Implement **BinaryTree** with Generics
-- Resources
-- Examples and Tutorials
+    - [Implement **Stack** with Generics](#stack)
+    - [Implement **Linkedlist** with Generics](#linked-list)
+    - [Implement **BinaryTree** with Generics](#binary-tree)
+- [Resources](#resources)
+- [Examples and Tutorials](#examples-and-tutorials)
 
 ## Introduction
 The latest Go release, version 1.18, is a significant release, including changes to the language, implementation of the toolchain, runtime, and libraries. Go 1.18 arrives seven months after Go 1.17. As always, the release maintains the Go 1 promise of compatibility. We expect almost all Go programs to continue to compile and run as before.
