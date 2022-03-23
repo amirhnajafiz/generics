@@ -180,6 +180,34 @@ l.Iterate()
 l.Remove(12.1)
 ```
 
+### Binary Tree
+Type parameter and data structs:
+```go
+type Data interface {
+	int | int32 | int64 | float64
+}
+
+type Node[T Data] struct {
+	Parent *Node[T]
+	Left   *Node[T]
+	Right  *Node[T]
+	key    T
+}
+
+type Tree[T Data] struct {
+	Root *Node[T]
+}
+```
+
+Now we can create our tree with each type we want:
+```go
+tree := Tree[int]{}
+tree.Insert(20)
+tree.Insert(25)
+tree.Insert(24)
+tree.Delete(20)
+```
+
 ## Resources
 - [Beta installation of Go 1.18](https://go.dev/blog/go1.18beta2)
 - [Whats new in Go 1.18](https://go.dev/blog/go1.18)
