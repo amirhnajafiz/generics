@@ -73,6 +73,21 @@ Fuzzing, sometimes also called fuzz testing, is the practice of giving unexpecte
 Fuzzing is a technique where you automagically generate input values for your functions to find bugs.
 The unit test has limitations, namely that each input must be added to the test by the developer. One benefit of fuzzing is that it comes up with inputs for your code, and may identify edge cases that the test cases you came up with didn’t reach.
 
+General:
+```go
+func FuzzXXX(f *testing.F) {
+    f.Add() // Adding your own inputs if you want
+    f.Fuzz(func(t *testing.T) {
+        // Write your tests
+    })
+}
+```
+
+Now run your tests:
+```go
+go test -fuzz=Fuzz
+```
+
 Example:
 ```go
 func FuzzReverse(f *testing.F) {
@@ -80,6 +95,7 @@ func FuzzReverse(f *testing.F) {
     for _, tc := range testcases {
         f.Add(tc)  // Use f.Add to provide a seed corpus
     }
+
     f.Fuzz(func(t *testing.T, orig string) {
         rev := Reverse(orig)
         doubleRev := Reverse(rev)
