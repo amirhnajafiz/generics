@@ -68,6 +68,9 @@ func SumNumbers[K comparable, V Number](m map[K]V) V {
 See the [source code](./examples/generics/) of the example.
 
 ### Getting started with fuzzing
+Fuzzing, sometimes also called fuzz testing, is the practice of giving unexpected input to your software. Ideally, this test causes your application to crash, or behave in unexpected ways. Regardless of what happens, you can learn a lot from how your code reacts to data it wasn't programmed to accept, and you can add appropriate error handling.
+
+Fuzzing is a technique where you automagically generate input values for your functions to find bugs.
 The unit test has limitations, namely that each input must be added to the test by the developer. One benefit of fuzzing is that it comes up with inputs for your code, and may identify edge cases that the test cases you came up with didn’t reach.
 
 Example:
@@ -232,3 +235,4 @@ See the [source code](./examples/example/binary-tree/) of the example.
 - [Go examples for generics](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjagPy1is_2AhXP8rsIHUWABXQQFnoECAgQAQ&url=https%3A%2F%2Fbignerdranch.com%2Fblog%2Fexploring-go-v1-18s-generics%2F&usg=AOvVaw0p24Y94Q3VshO1kUaKY_p7)
 - [Type parameters in Go 1.18](https://www.youtube.com/watch?v=Rvq__lVVmQc)
 - [First look at Go generics](https://www.youtube.com/watch?v=lw4X6takiRA)
+- [All you need to know about fuzzing testing in Go](https://opensource.com/article/22/1/native-go-fuzz-testing)
