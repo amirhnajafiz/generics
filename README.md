@@ -141,7 +141,39 @@ use (
 )
 ```
 
-Real example:
+Creating workspaces:
+```shell
+go work init ./mod ./tools
+```
+
+The output project structur will be:
+```
+Project
+├── mod
+│   ├── go.mod      
+│   └── main.go
+├── go.work         
+└── tools
+    ├── fish.go
+    └── go.mod      
+```
+
+The content of **go.work** file:
+```go
+go 1.18
+
+use (
+    ./mod 
+    ./tools
+)
+```
+
+A total of three directives are supported within the go.work file:
+- go: declares the go version number, mainly for subsequent version control of new semantics.
+- use: declares the specific file path of a module on which the application depends. The path can be either absolute or relative, and can be outside the application’s destiny directory.
+- replace: Declares that the import path of a module dependency is replaced, with priority over the replace directive in go.mod.
+
+Example of **go.work** file with directives:
 ```go
 go 1.18
 
@@ -157,6 +189,17 @@ The go command has a couple of subcommands for working with workspaces in additi
 - **go work use [-r] [dir]** adds a use directive to the go.work file for dir, if it exists, and removes the use directory if the argument directory doesn’t exist. The -r flag examines subdirectories of dir recursively.
 - **go work edit** edits the go.work file similarly to go mod edit
 - **go work sync** syncs dependencies from the workspace’s build list into each of the workspace modules.
+
+The go.work file doesn’t need to be committed to a Git repository, otherwise it’s a bit of a toss-up. As long as you have go.work set up in your Go project, you will be in workspace mode at runtime and compile time, and the workspace configuration will be given highest priority to suit your local development needs.
+
+If you want to disable workspace mode, you can specify it with the -workfile=off command.
+
+That is, execute the following command at runtime.
+```shell
+go run -workfile=off main.go
+
+go build -workfile=off
+```
 
 ### 20% Performance Improvements
 Apple M1, ARM64, and PowerPC64 users rejoice! Go 1.18 includes CPU performance improvements of up to 20% due to the expansion of Go 1.17’s register ABI calling convention to these architectures. Just to underscore how big this release is, a 20% performance improvement is the fourth most important headline!
@@ -258,6 +301,7 @@ See the [source code](./examples/example/binary-tree/) of the example.
 - [Go workspace](https://go.dev/ref/mod#workspaces)
 - [Go 1.18 overview](https://www.youtube.com/watch?v=-wpISpghaB8)
 - [Multi-Module Workspace](https://go.googlesource.com/proposal/+/master/design/45713-workspace.md)
+- [Go multi-module](https://www.sobyte.net/post/2022-01/go-multi-module/)
 
 ## Examples and Tutorials
 - [Go generics tutorial](https://go.dev/doc/tutorial/generics)
