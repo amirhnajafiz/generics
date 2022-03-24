@@ -136,7 +136,21 @@ The go command produces a go.work file that looks like this:
 ```go
 go 1.18
 
-use ./hello
+use (
+    ./[Workspace/directory name]
+)
+```
+
+Real example:
+```go
+go 1.18
+
+use (
+    ./baz // foo.org/bar/baz
+    ./tools // golang.org/x/tools
+)
+
+replace golang.org/x/net => example.com/fork/net v1.4.5
 ```
 
 The go command has a couple of subcommands for working with workspaces in addition to go work init:
@@ -243,6 +257,7 @@ See the [source code](./examples/example/binary-tree/) of the example.
 - [All new in Go 1.18](https://tip.golang.org/doc/go1.18)
 - [Go workspace](https://go.dev/ref/mod#workspaces)
 - [Go 1.18 overview](https://www.youtube.com/watch?v=-wpISpghaB8)
+- [Multi-Module Workspace](https://go.googlesource.com/proposal/+/master/design/45713-workspace.md)
 
 ## Examples and Tutorials
 - [Go generics tutorial](https://go.dev/doc/tutorial/generics)
