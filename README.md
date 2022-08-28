@@ -1,5 +1,10 @@
-# Go 1.18
-<img src="./assets/logo.avif" />
+<p align="center">
+  <img src="./assets/logo.avif" alt="logo" width="400" />
+</p>
+
+<h1 align="center">
+Golang 1.18
+</h1>
 
 New features of Golang 1.18 with tutorial and examples.
 In this repository I introduce new features of Golang version 1.18 with their examples and resources.
