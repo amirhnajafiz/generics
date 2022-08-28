@@ -5,23 +5,23 @@ package main
 
 import "fmt"
 
-// Type values
+// Data Type values.
 type Data interface {
 	int64 | float64 | string
 }
 
-// Each stack house is a node
+// Node Each stack house is a node.
 type Node[T Data] struct {
 	Next  *Node[T]
 	Value T
 }
 
-// Our stack
+// Stack Our stack.
 type Stack[T Data] struct {
 	Head *Node[T]
 }
 
-// Push : insert data into stack
+// Push : insert data into stack.
 func (s *Stack[T]) Push(value T) {
 	s.Head = &Node[T]{
 		Next:  s.Head,
@@ -29,7 +29,7 @@ func (s *Stack[T]) Push(value T) {
 	}
 }
 
-// Pop : remove data from stack
+// Pop : remove data from stack.
 func (s *Stack[T]) Pop() *Node[T] {
 	if s.Head != nil {
 		temp := s.Head
